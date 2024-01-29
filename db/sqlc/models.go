@@ -5,7 +5,7 @@
 package db
 
 import (
-	"github.com/jackc/pgx/v5/pgtype"
+	"time"
 )
 
 type Account struct {
@@ -13,22 +13,22 @@ type Account struct {
 	Owner     string
 	Balance   int64
 	Currency  string
-	CreatedAt pgtype.Timestamptz
+	CreatedAt time.Time
 }
 
 type Entry struct {
 	ID        int64
-	AccountID pgtype.Int8
+	AccountID int64
 	// can be negative or positive
 	Amount    int64
-	CreatedAt pgtype.Timestamptz
+	CreatedAt time.Time
 }
 
 type Transfer struct {
 	ID            int64
-	FromAccountID pgtype.Int8
-	ToAccountID   pgtype.Int8
+	FromAccountID int64
+	ToAccountID   int64
 	// must be positive
 	Amount    int64
-	CreatedAt pgtype.Timestamptz
+	CreatedAt time.Time
 }
